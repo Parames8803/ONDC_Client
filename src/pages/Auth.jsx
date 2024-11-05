@@ -20,7 +20,7 @@ const Auth = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/auth", {
+      const response = await axios.post("https://ondc-server.onrender.com/auth", {
         isLogin,
         username: isLogin ? "" : username,
         email,

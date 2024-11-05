@@ -27,7 +27,7 @@ const Layout = () => {
       if (!isRecording) {
         resetTimer();
         console.log("record started");
-        let res = await Axios.get("http://localhost:5000/start_recording");
+        let res = await Axios.get("https://ondc-server.onrender.com/start_recording");
         console.log(res);
         setIsRunning(true);
         setIsRecording(true);
@@ -44,7 +44,7 @@ const Layout = () => {
         setIsRecording(false);
         resetTimer();
         console.log("record stopped");
-        let res = await Axios.get("http://localhost:5000/stop_recording");
+        let res = await Axios.get("https://ondc-server.onrender.com/stop_recording");
         handleSearch(res.data);
       }
     } catch (error) {
@@ -70,7 +70,7 @@ const Layout = () => {
 
     try {
       const response = await Axios.post(
-        "http://localhost:5000/process_image",
+        "https://ondc-server.onrender.com/process_image",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

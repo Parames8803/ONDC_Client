@@ -22,7 +22,7 @@ const Cart = () => {
     const loadData = async () => {
       try {
         const token = localStorage.getItem("token");
-        let res = await axios.get("http://localhost:5000/user/cart/details", {
+        let res = await axios.get("https://ondc-server.onrender.com/user/cart/details", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -69,7 +69,7 @@ const Cart = () => {
   const handleRemoveProduct = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.delete(`http://localhost:5000/user/cart/${id}`, {
+      const res = await axios.delete(`https://ondc-server.onrender.com/user/cart/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
