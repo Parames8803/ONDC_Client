@@ -26,8 +26,7 @@ const Layout = () => {
     try {
       if (!isRecording) {
         resetTimer();
-        console.log("record started");
-        let res = await Axios.get("https://ondc-server.onrender.com/start_recording");
+        let res = await Axios.get(`${process.env.REACT_APP_SERVER_URL}/start_recording`);
         console.log(res);
         setIsRunning(true);
         setIsRecording(true);
@@ -44,7 +43,7 @@ const Layout = () => {
         setIsRecording(false);
         resetTimer();
         console.log("record stopped");
-        let res = await Axios.get("https://ondc-server.onrender.com/stop_recording");
+        let res = await Axios.get(`${process.env.REACT_APP_SERVER_URL}/stop_recording`);
         handleSearch(res.data);
       }
     } catch (error) {
@@ -70,7 +69,7 @@ const Layout = () => {
 
     try {
       const response = await Axios.post(
-        "https://ondc-server.onrender.com/process_image",
+        `${process.env.REACT_APP_SERVER_URL}/process_image`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -163,7 +162,7 @@ const Layout = () => {
                 btnRecordStop();
               }}
             >
-              <FaMicrophoneSlash className="search_icons"/>
+              <FaMicrophoneSlash className="search_icons" />
             </button>
           ) : (
             <button
@@ -172,12 +171,12 @@ const Layout = () => {
                 btnRecordStart();
               }}
             >
-              <FaMicrophone className="search_icons"/>
+              <FaMicrophone className="search_icons" />
             </button>
           )}
           <div className="upload">
             <label htmlFor="img" className="imgLabel">
-              <RiImageAddFill className="search_icons"/>
+              <RiImageAddFill className="search_icons" />
             </label>
             <input
               type="file"

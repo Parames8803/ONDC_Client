@@ -6,7 +6,6 @@ import { toast } from "sonner";
 import "../styles/Cart.css";
 
 const Cart = () => {
-  const [userData, setUserData] = useState({});
   const [products, setProducts] = useState([]);
   const [render, setRender] = useState(false);
 
@@ -22,14 +21,13 @@ const Cart = () => {
     const loadData = async () => {
       try {
         const token = localStorage.getItem("token");
-        let res = await axios.get("https://ondc-server.onrender.com/user/cart/details", {
+        let res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/user/cart/details`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         console.log(res);
         if (res.status === 200) {
-          setUserData(res.data);
           const productData = filterProductsByIds(res.data.products).map(
             (product) => ({ ...product, quantity: 1 })
           );
@@ -69,7 +67,7 @@ const Cart = () => {
   const handleRemoveProduct = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.delete(`https://ondc-server.onrender.com/user/cart/${id}`, {
+      const res = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/user/cart/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

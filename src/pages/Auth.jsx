@@ -20,13 +20,16 @@ const Auth = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("https://ondc-server.onrender.com/auth", {
-        isLogin,
-        username: isLogin ? "" : username,
-        email,
-        password: pass,
-      });
-console.log(response)
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/auth`,
+        {
+          isLogin,
+          username: isLogin ? "" : username,
+          email,
+          password: pass,
+        }
+      );
+      console.log(response);
       if (response.status === 200) {
         // Successful login or registration
         let { username, token } = response.data;

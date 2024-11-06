@@ -19,7 +19,7 @@ const ProductDetails = () => {
       let user = localStorage.getItem("token");
       if (user !== null) {
         let res = await Axios.post(
-          "https://ondc-server.onrender.com/user/cart",
+          `${process.env.REACT_APP_SERVER_URL}/user/cart`,
           { id },
           {
             headers: {
